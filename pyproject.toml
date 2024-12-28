@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "alpacagen"
 version = "0.1.0"
 description = "A tool for generating instruction-following datasets in Alpaca format"
-authors = [{name = "Hsiang-An Chuang", email = "qqandy0120@github.com"}]
+authors = [{name = "Hsiang-An Chuang", email = "qqandy0120@gmail.com"}]
 license = {file = "LICENSE"}
 readme = "README.md"
 requires-python = ">=3.8"
