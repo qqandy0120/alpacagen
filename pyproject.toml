@@ -19,5 +19,5 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/alpacagen"
-Repository = "https://github.com/yourusername/alpacagen.git"
+Homepage = "https://github.com/qqandy0120/alpacagen"
+Repository = "https://github.com/qqandy0120/alpacagen.git"

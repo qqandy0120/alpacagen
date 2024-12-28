@@ -1,0 +1,5 @@
+markitdown
+langchain_text_splitters
+openai>=1.0.0
+tqdm
+nest_asyncio
