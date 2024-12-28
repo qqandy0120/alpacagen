@@ -1,7 +1,7 @@
 from typing import List, Union
 from pathlib import Path
 from abc import ABC, abstractmethod
-from models.qa_pair import Chunk
+from ..models.qa_pair import Chunk
 class ChunkStrategy(ABC):
     @abstractmethod
     def _split_text(self, text: str) -> List[str]:

@@ -14,7 +14,7 @@ AlpacaGen is a powerful tool for generating instruction-following datasets in th
 ## Installation
 
 ```bash
-pip install markitdown langchain_text_splitters openai tqdm nest_asyncio
+pip install alpacagen
 ```
 
 ## Usage
@@ -29,6 +29,7 @@ ag = AlpacaGen(
     llm_client='azure',  # or 'openai'
     api_key='your-api-key',
     base_url='your-api-base-url'  # Required for Azure OpenAI
+    llm_model='your-model-selection'  # defult using gpt-4o
 )
 
 # Generate dataset from a single file
@@ -53,52 +54,6 @@ chunks, dataset = ag.generate(
     entries_per_chunk=5  # Generate more QA pairs per chunk
 )
 ```
-
-## Output Format
-
-The generated JSONL file contains entries in the following format:
-
-```json
-{
-    "instruction": "Task description",
-    "input": "Additional context or input",
-    "output": "Expected response",
-    "text": "Full formatted text including all components"
-}
-```
-
-## Customization
-
-### Custom Prompts
-
-Create a text file with your prompt template. Use `{text}` as a placeholder for the chunk content:
-
-```text
-Based on the following text, generate a question-answer pair in JSON format:
-{text}
-Generate a response in the following format:
-{
-    "instruction": "The task or question",
-    "input": "Any additional context or input",
-    "output": "The expected response or answer"
-}
-```
-
-### Configuration Options
-
-- `llm_client`: Choose between 'azure' or 'openai'
-- `llm_model`: Specify custom model (defaults available for each client)
-- `chunk_size`: Control the size of text chunks (default: 4096)
-- `entries_per_chunk`: Number of QA pairs to generate per chunk (default: 3)
-- `language`: Choose between 'zhtw' (Traditional Chinese) or 'en' (English)
-
-## Error Handling
-
-AlpacaGen includes comprehensive error handling and logging:
-- File processing errors are logged
-- Invalid JSON responses are skipped
-- Progress bars show processing status
-- Failed generations are automatically filtered out
 
 ## Understanding Chunks and Dataset
 
@@ -159,22 +114,13 @@ Example QA pairs:
 ]
 ```
 
-### Processing Flow
+## Configuration Options
 
-1. Input text → Chunks:
-   - Text is split into manageable chunks using RecursiveChunkStrategy
-   - Overlap ensures context continuity between chunks
-   - Each chunk is tracked with its source and position
-
-2. Chunks → Dataset:
-   - Multiple QA pairs are generated for each chunk
-   - Each QA pair focuses on different aspects of the chunk's content
-   - Invalid or failed generations are automatically filtered out
-
-3. Dataset → JSONL:
-   - QA pairs are converted to JSON format
-   - Each pair is written as a separate line in the output file
-   - The full text including instruction, input, and output is preserved
+- `llm_client`: Choose between 'azure' or 'openai'
+- `llm_model`: Specify custom model (defaults available for each client)
+- `chunk_size`: Control the size of text chunks (default: 4096)
+- `entries_per_chunk`: Number of QA pairs to generate per chunk (default: 3)
+- `language`: Choose between 'zhtw' (Traditional Chinese) or 'en' (English)
 
 ## Best Practices
 
