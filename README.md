@@ -55,6 +55,35 @@ chunks, dataset = ag.generate(
 )
 ```
 
+### Defult Prompt
+```
+Task Description: You are a professional educational content developer. I will provide you with a passage from a technical manual or documentation. Based on this content, generate 1 entry for fine-tuning large language models. This entry should be directly related to the given text content and pose relevant questions.
+
+Related materials or book content: {text}
+
+Please generate the entry in the following format, ensuring all fields have appropriate content:
+{
+    "instruction": "Ask a specific question related to the text",
+    "input": "Provide additional context information here if needed, otherwise leave empty",
+    "output": "Detailed answer to the instruction or task completion result"
+}
+
+Examples of generated questions:
+{
+    "instruction": "Which server can provide 4 Intel Xeon Scalable processors Gold 6 or Intel Xeon Platinum series per server, with each processor having 8 or more cores, 3.7GHz or higher, equipped with 22.5MB or more L3 cache memory, and each CPU supporting 2 or more high-speed UPI (Ultra Path Interconnect) system buses, including CPU cooling device?",
+    "input": "",
+    "output": "HPE ProLiant DL560 Gen11"
+}
+{
+    "instruction": "Which server management control chip service or server management software service (must provide legal authorization) has early warning functionality and Call Home feature, and provides proactive support services, where the server manufacturer can remotely assist in troubleshooting, and must complete this function's setup or integration with the hospital's HPE server host group's ONEVIEW automatic fault reporting mechanism or DELL open manager automatic fault reporting mechanism during installation?",
+    "input": "",
+    "output": "HPE Integrated Lights-Out"
+}
+
+Please generate content in "valid JSON format." Ensure that the generated questions are clear and specific, avoid using pronouns to refer to content in the data, and use correct and complete nouns or concepts to pose questions. The answers should be concise and accurate. If you find the provided text too brief or lacking sufficient content to generate questions, no response is needed.
+
+```
+
 ## Understanding Chunks and Dataset
 
 ### Chunks
@@ -130,9 +159,7 @@ Example QA pairs:
 4. Use appropriate language setting for your source material
 5. Consider using custom prompts for specific use cases
 
-## Limitations
+## Contact Me
 
-- Requires valid API credentials for OpenAI or Azure OpenAI
-- Processing speed depends on API rate limits
-- Large directories may take significant time to process
-- Memory usage scales with chunk size and batch size
+Have questions or suggestions? Feel free to reach out!
+Email: [qqandy0120@gmail.com](mailto:qqandy0120@gmail.com)
