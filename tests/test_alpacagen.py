@@ -1,4 +1,3 @@
-# tests/test_alpacagen.py
 import pytest
 from pathlib import Path
 from alpacagen import (
@@ -41,27 +40,32 @@ def mock_openai_client(mocker):
 
 class TestQAPair:
     def test_qa_pair_creation(self):
+        chunk = Chunk(content="Test content", source="Test source", idx="01/01")
         qa_pair = QAPair(
             instruction="Test instruction",
             input="Test input",
-            output="Test output"
+            output="Test output",
+            source=chunk
         )
         assert qa_pair.instruction == "Test instruction"
         assert qa_pair.input == "Test input"
         assert qa_pair.output == "Test output"
+        assert qa_pair.source == chunk
 
     def test_qa_pair_to_dict(self):
+        chunk = Chunk(content="Test content", source="Test source", idx="01/01")
         qa_pair = QAPair(
             instruction="Test instruction",
             input="Test input",
-            output="Test output"
+            output="Test output",
+            source=chunk
         )
         result = qa_pair.to_dict()
         assert isinstance(result, dict)
         assert result["instruction"] == "Test instruction"
         assert result["input"] == "Test input"
         assert result["output"] == "Test output"
-        assert "text" in result
+        assert "source" in result
 
 class TestChunkStrategy:
     def test_recursive_chunk_strategy(self):
@@ -93,10 +97,12 @@ class TestAlpacaGen:
             base_url='test-url'
         )
         
-        chunks, dataset = ag.generate(
-            input_path=sample_text_file,
-            output_path=output_file,
-            entries_per_chunk=1
+        chunks = ag.get_chunks(input_path=sample_text_file)
+        dataset = ag.get_datasets(
+            chunks=chunks,
+            language='en',
+            entries_per_chunk=1,
+            output_path=output_file
         )
         
         assert isinstance(chunks, list)
@@ -113,9 +119,8 @@ class TestAlpacaGen:
         )
         
         with pytest.raises(AssertionError):
-            ag.generate(
-                input_path="test.txt",
-                output_path="output.jsonl",
+            ag.get_datasets(
+                chunks=[],
                 language='invalid'
             )
 

@@ -2,7 +2,7 @@ import json
 import logging
 from typing import Optional
 from openai import AsyncOpenAI
-from ..models.qa_pair import QAPair
+from ..models.qa_pair import QAPair, Chunk
 
 logger = logging.getLogger(__name__)
 
@@ -11,12 +11,14 @@ class QAGenerator:
         self.client = client
         self.llm_model = llm_model
         self.prompt_template = prompt_template
-    
-    async def generate(self, text: str) -> Optional[QAPair]:
+    '''
+    Chunk -> QAPairs
+    '''
+    async def generate(self, chunk: Chunk) -> Optional[QAPair]:
         try:
             response = await self.client.completions.create(
                 model=self.llm_model,
-                prompt=self.prompt_template.format(text=text),
+                prompt=self.prompt_template.format(text=chunk.content),
                 max_tokens=1024,
             )
             
@@ -29,7 +31,8 @@ class QAGenerator:
             return QAPair(
                 instruction=data['instruction'],
                 input=data['input'],
-                output=data['output']
+                output=data['output'],
+                source=chunk,
             )
             
         except Exception as e:

@@ -1,4 +1,5 @@
-Task Description: You are a professional educational content developer. I will provide you with a passage from a technical manual or documentation. Based on this content, generate 1 entry for fine-tuning large language models. This entry should be directly related to the given text content and pose relevant questions.
+Task Description:
+You are a professional educator. I will provide you with a passage from a technical manual. Based on this content, please design a set of Q&A questions specifically to test students' comprehension of the material. The questions should be entirely based on the given content, focusing on core concepts and coding abilities, without being overly pedantic or relying on general knowledge.
 
 Related materials or book content: {text}
 
