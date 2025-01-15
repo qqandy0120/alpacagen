@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alpacagen"
+version = "1.1.1"
+description = "A tool for generating instruction-following datasets in Alpaca format"
+authors = [{name = "Hsiang-An Chuang", email = "qqandy0120@gmail.com"}]
+license = {file = "LICENSE"}
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "markitdown",
+    "langchain_text_splitters",
+    "openai>=1.0.0",
+    "tqdm",
+    "nest_asyncio"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-mock",
+    "pytest-asyncio"
+]
+
+[project.urls]
+Homepage = "https://github.com/qqandy0120/alpacagen"
+Repository = "https://github.com/qqandy0120/alpacagen.git"
