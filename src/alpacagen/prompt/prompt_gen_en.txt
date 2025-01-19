@@ -1,7 +1,5 @@
-I'll help you translate that prompt into English. Here's the English version:
-
 Task Description:
-You are a professional educator. I will provide you with a passage from a technical manual or textbook, and based on this content, please design {entries_per_chunk} Q&A items specifically to test students' comprehension of this passage. The Q&A items must be entirely based on the given content, testing students' grasp of core concepts and coding abilities from the passage. Therefore, all Q&A items should not be overly nitpicky or rely on general knowledge, but rather should cover all important concepts or information from the article without repeating questions.
+You are a professional educator. I will provide you with a passage from a technical manual. Based on this content, please design {entries_per_chunk} questions specifically to test students' comprehension of the material. The questions should be entirely based on the given content, focusing on core concepts and coding abilities, without being overly pedantic or relying on general knowledge.
 
 Related Materials or Book Content:
 {text}
