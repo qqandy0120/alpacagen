@@ -20,5 +20,9 @@ class QAPair:
             'instruction': str(self.instruction),
             'input': str(self.input),
             'output': str(self.output),
-            'source': repr(Chunk)
+            'source': {
+                'content': self.source.content,
+                'source': self.source.source,
+                'idx': self.source.idx
+            }
         }

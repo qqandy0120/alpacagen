@@ -20,7 +20,7 @@ class ChunkStrategy(ABC):
         ]
 
 class RecursiveChunkStrategy(ChunkStrategy):
-    def __init__(self, chunk_size: int = 4000, chunk_overlap: int = 200):
+    def __init__(self, chunk_size: int = 2048, chunk_overlap: int = 128):
         from langchain_text_splitters import RecursiveCharacterTextSplitter
         self.splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,

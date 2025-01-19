@@ -1,26 +1,16 @@
-Task Description:
-You are a professional educator. I will provide you with a passage from a technical manual. Based on this content, please design a questions specifically to test students' comprehension of the material. The questions should be entirely based on the given content, focusing on core concepts and coding abilities, without being overly pedantic or relying on general knowledge.
+I'll help you translate that prompt into English. Here's the English version:
 
-Related materials or book content
+Task Description:
+You are a professional educator. I will provide you with a passage from a technical manual or textbook, and based on this content, please design {entries_per_chunk} Q&A items specifically to test students' comprehension of this passage. The Q&A items must be entirely based on the given content, testing students' grasp of core concepts and coding abilities from the passage. Therefore, all Q&A items should not be overly nitpicky or rely on general knowledge, but rather should cover all important concepts or information from the article without repeating questions.
+
+Related Materials or Book Content:
 {text}
 
-Please generate the entry in the following format, ensuring all fields have appropriate content:
-{
-    "instruction": "Ask a specific question related to the text",
-    "input": "Provide additional context information here if needed, otherwise leave empty",
-    "output": "Detailed answer to the instruction or task completion result"
-}
+Please generate entries in the following format, ensuring all fields have appropriate content:
+{{"instruction": "Ask a specific question related to the text", "input": "Provide additional context information here if needed, otherwise leave empty", "output": "Detailed answer to the instruction or task completion result"}}
 
-Examples of generated questions:
-{
-    "instruction": "Which server can provide 4 Intel Xeon Scalable processors Gold 6 or Intel Xeon Platinum series per server, with each processor having 8 or more cores, 3.7GHz or higher, equipped with 22.5MB or more L3 cache memory, and each CPU supporting 2 or more high-speed UPI (Ultra Path Interconnect) system buses, including CPU cooling device?",
-    "input": "",
-    "output": "HPE ProLiant DL560 Gen11"
-}
-{
-    "instruction": "Which server management control chip service or server management software service (must provide legal authorization) has early warning functionality and Call Home feature, and provides proactive support services, where the server manufacturer can remotely assist in troubleshooting, and must complete this function's setup or integration with the hospital's HPE server host group's ONEVIEW automatic fault reporting mechanism or DELL open manager automatic fault reporting mechanism during installation?",
-    "input": "",
-    "output": "HPE Integrated Lights-Out"
-}
+Example questions:
+{{"instruction": "Which server can provide 4 Intel Xeon Scalable processors Gold 6 or Intel Xeon Platinum series per server, with 8 or more cores per processor, 3.7GHz or higher, L3 cache memory of 22.5MB or more, each CPU supporting 2 or more high-speed UPI (Ultra Path Interconnect) system buses, including CPU cooling device?", "input": "", "output": "HPE ProLiant DL560 Gen11"}}
+{{"instruction": "Which server management control chip management service or server management software service (must provide legal authorization) has early warning functionality and Call Home feature, and provides proactive support services, with remote troubleshooting by the server manufacturer, and must complete the configuration of this function during installation or integrate it into the hospital's HPE server group's ONEVIEW automatic fault reporting mechanism or DELL open manager automatic fault reporting mechanism?", "input": "", "output": "HPE Integrated Lights-Out"}}
 
-Please generate content in "valid JSON format." Ensure that the generated questions are clear and specific, avoid using pronouns to refer to content in the data, and use correct and complete nouns or concepts to pose questions. The answers should be concise and accurate. If you find the provided text too brief or lacking sufficient content to generate questions, no response is needed.
+Please generate responses in "Traditional Chinese" using "Taiwan terminology" in "valid JSON format". For multiple Q&A items, please separate them with \n. Ensure that the generated questions are clear and specific, avoiding the use of pronouns to refer to content in the data. Instead, use correct and complete nouns or concepts to pose questions. Answers should be concise and accurate. If you find that the provided text is too brief or lacks sufficient content to generate questions, no response is needed.

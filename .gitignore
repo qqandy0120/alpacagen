@@ -6,3 +6,6 @@ __pycache__/
 *.py[cod]
 *.class
 TODO
+*.docx
+debug.py
+test.jsonl
