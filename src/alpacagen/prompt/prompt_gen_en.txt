@@ -1,5 +1,5 @@
 Task Description:
-You are a professional educator. I will provide you with a passage from a technical manual. Based on this content, please design a questions specifically to test students' comprehension of the material. The questions should be entirely based on the given content, focusing on core concepts and coding abilities, without being overly pedantic or relying on general knowledge.
+You are a professional educator. I will provide you with a passage from a technical manual. Based on this content, please design {entries_per_chunk} questions specifically to test students' comprehension of the material. The questions should be entirely based on the given content, focusing on core concepts and coding abilities, without being overly pedantic or relying on general knowledge.
 
 Related materials or book content
 {text}
