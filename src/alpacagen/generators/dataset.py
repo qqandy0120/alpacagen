@@ -31,7 +31,9 @@ class QADatasetGenerator:
                 desc=f"Generate QA(Batch{n+1}/{itrs})"
             )
             # flatten datset to make final dataset a list of QAPair
-            dataset.extend([qa_pair for sublist in batch_dataset for qa_pair in sublist])
+            if batch_dataset:
+                for sublist in batch_dataset:
+                    dataset.extend([qa_pair for qa_pair in sublist if qa_pair])
             await asyncio.sleep(0.5)
         
 

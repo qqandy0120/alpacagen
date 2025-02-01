@@ -3,11 +3,11 @@ import logging
 from typing import Optional, List
 from openai import AsyncOpenAI
 from ..models.qa_pair import QAPair, Chunk
-
+from ..generators.client import BaseLLMClient
 logger = logging.getLogger(__name__)
 
 class QAGenerator:
-    def __init__(self, client: AsyncOpenAI, llm_model: str, prompt_template: str) -> List[QAPair]:
+    def __init__(self, client: BaseLLMClient, llm_model: str, prompt_template: str) -> List[QAPair]:
         self.client = client
         self.llm_model = llm_model
         self.prompt_template = prompt_template
@@ -20,18 +20,15 @@ class QAGenerator:
             return None
         
         try:
-            response = await self.client.completions.create(
-                model=self.llm_model,
+            response_text = await self.client.get_response(
                 prompt=self.prompt_template.format(
                     text=chunk.content, 
                     entries_per_chunk=entries_per_chunk
                 ),
                 max_tokens=1024,
             )
-            
-            response_text = response.choices[0].text
+            # print(response_text)
             response_json_format = self.parsing_response(response_text)
-
             # Add validation check
             if not response_json_format:  # If empty or None
                 logger.info("Unable to receive the expected response in JSON format.")

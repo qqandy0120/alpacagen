@@ -9,6 +9,7 @@ from openai import AsyncOpenAI
 from .converters.text import MarkItDownConverter
 from .models.qa_pair import QAPair, Chunk
 from .strategies.chunk import RecursiveChunkStrategy
+from .generators.client import OpenAIClient, AzureClient, HuggingFaceClient
 from .generators.chunk import ChunkGenerator
 from .generators.qa import QAGenerator
 from .generators.dataset import QADatasetGenerator
@@ -17,7 +18,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 LANGUAGES = ['zhtw', 'en']
-LLM_CLIENTS = ['azure', 'openai']
+LLM_PROVIDERS = ['azure', 'openai', 'huggingface']
 DEFAULT_MODEL_DICT = {
     'azure': 'azure-gpt-4o',
     'openai': 'gpt-4o',
@@ -30,28 +31,29 @@ DEFAULT_PROMPT_PATHS = {
 class AlpacaGen:
     def __init__(
             self,
-            llm_client: str = None,
+            llm_provider: str = None,
             llm_model: str = None,
             api_key: str = None,
             base_url: str = None,
     ):
-        assert llm_client in LLM_CLIENTS, f"Specify your llm client, client should be one of {LLM_CLIENTS}"
-        
-        self.llm_client = llm_client
-        self.llm_model = llm_model if llm_model else DEFAULT_MODEL_DICT[self.llm_client]
+        assert llm_provider in LLM_PROVIDERS, f"Specify your llm provider, provider should be one of {LLM_PROVIDERS}"
+        assert llm_provider != 'huggingface' or llm_model, f"Specify llm model since you chose huggingface as llm provider"
+        self.llm_provider = llm_provider
+        self.llm_model = llm_model if llm_model else DEFAULT_MODEL_DICT[self.llm_provider]
         self.api_key = api_key
         self.base_url = base_url
-        self._client = None
         logging.basicConfig(level=logging.ERROR)
 
     async def _get_client(self) -> AsyncOpenAI:
         """Get or create AsyncOpenAI client."""
-        if self._client is None:
-            self._client = AsyncOpenAI(
-                api_key=self.api_key,
-                base_url=self.base_url,
-            )
-        return self._client
+        match self.llm_provider:
+            case 'openai':
+                client = OpenAIClient(api_key=self.api_key)
+            case 'azure':
+                client = AzureClient(api_key=self.api_key, base_url=self.base_url)
+            case 'huggingface':
+                client = HuggingFaceClient(llm_model=self.llm_model)
+        return client
 
     def get_chunks(
         self,

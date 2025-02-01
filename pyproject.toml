@@ -9,13 +9,14 @@ description = "A tool for generating instruction-following datasets in Alpaca fo
 authors = [{name = "Hsiang-An Chuang", email = "qqandy0120@gmail.com"}]
 license = {file = "LICENSE"}
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 dependencies = [
     "markitdown",
     "langchain_text_splitters",
     "openai>=1.0.0",
     "tqdm",
-    "nest_asyncio"
+    "nest_asyncio",
+    "transformers",
 ]
 
 [project.optional-dependencies]

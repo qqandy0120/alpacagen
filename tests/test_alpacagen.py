@@ -92,7 +92,7 @@ class TestAlpacaGen:
         output_file = tmp_path / "output.jsonl"
         
         ag = AlpacaGen(
-            llm_client='azure',
+            llm_provider='azure',
             api_key='test-key',
             base_url='test-url'
         )
@@ -113,7 +113,7 @@ class TestAlpacaGen:
 
     def test_invalid_language(self):
         ag = AlpacaGen(
-            llm_client='azure',
+            llm_provider='azure',
             api_key='test-key',
             base_url='test-url'
         )
