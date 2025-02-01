@@ -7,5 +7,6 @@ __pycache__/
 *.class
 TODO
 *.docx
+debug/
 debug.py
 test.jsonl
