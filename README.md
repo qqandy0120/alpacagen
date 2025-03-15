@@ -6,7 +6,7 @@ AlpacaGen is a powerful tool for generating instruction-following datasets in th
 
 - Process multiple file formats (PDF, DOCX, TXT, and more)
 - Recursive directory processing - automatically handles all supported files in a directory
-- Support for multiple LLM providers (Azure OpenAI, OpenAI)
+- Support for multiple LLM providers (Azure OpenAI)
 - Multilingual support (Traditional Chinese, English)
 - Automatic text chunking with customizable size and overlap
 - Batch processing with progress bars
